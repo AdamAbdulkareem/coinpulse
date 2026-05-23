@@ -32,4 +32,4 @@ export async function getTopCoins(options = {}) {
     return apiClient.get(ENDPOINTS.coinsMarkets, { signal, params })
 }
 
-// window.pingApi = pingApi
+window.pingApi = pingApi

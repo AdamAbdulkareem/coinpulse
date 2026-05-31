@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTopCoins } from "./api"
+import { CoinTable } from "./components/CoinTable"
+
 
 export default function App(){
   const [coins, setCoins] = useState([]);
@@ -28,12 +30,6 @@ export default function App(){
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong: {error.message}</p>;
   return (
-    <ul>
-      {coins.map((coin) => (
-        <li key={coin.id}>
-          {coin.market_cap_rank}. {coin.name} ({coin.symbol.toUpperCase()}) -- ${coin.current_price}
-        </li>
-      ))}
-    </ul>
+      <CoinTable coins={coins} />
   );
 }

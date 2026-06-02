@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { getTopCoins } from "./api"
 import { CoinTable } from "./components/CoinTable"
+import { LoadingState } from "./components/LoadingState"
+import { ErrorState } from "./components/ErrorState"
+import { SearchBar } from "./components/SearchBar"
 
 
 export default function App(){
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const ctrl = new AbortController();
@@ -27,9 +31,20 @@ export default function App(){
     return () => ctrl.abort();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong: {error.message}</p>;
+  const filteredCoins = coins.filter((coin) => {
+    if (query === "") return true;
+    const q = query.toLowerCase();
+    return coin.name.toLowerCase().includes(q) || coin.symbol.toLowerCase().includes(q)
+  })
+
+  if (loading) return <LoadingState />;
+  if (error) return <ErrorState message={error.message} />;
   return (
-      <CoinTable coins={coins} />
+      <>
+      <SearchBar value={query} onChange={setQuery} />
+      {filteredCoins.length === 0 ? <p className="text-center p-4 text-gray-500">No coins match "{query}".</p> :
+      <CoinTable coins={filteredCoins} />
+      }
+      </>
   );
 }

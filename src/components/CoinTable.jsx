@@ -1,6 +1,5 @@
 import { CoinRow } from "./CoinRow"
 
-
 export function CoinTable(props){
     const { coins } = props
     return (

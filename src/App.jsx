@@ -11,14 +11,21 @@ export default function App(){
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false)
 
   useEffect(() => {
     const ctrl = new AbortController();
 
-    getTopCoins({ perPage: 100, signal: ctrl.signal })
+    if (page === 1){
+      setLoading(true)
+    } else{
+      setLoadingMore(true)
+    }
+
+    getTopCoins({ perPage: 100, page, signal: ctrl.signal })
       .then((data) => {
-        console.log("CoinGecko /coins/markets response:", data);
-        setCoins(data);
+        setCoins((prev) => page === 1 ? data : [...prev, ...data]);
       })
       .catch((error) => {
         if (ctrl.signal.aborted) return;
@@ -26,10 +33,11 @@ export default function App(){
       })
       .finally(() => {
         setLoading(false);
+        setLoadingMore(false)
       });
 
     return () => ctrl.abort();
-  }, []);
+  }, [page]);
 
   const filteredCoins = coins.filter((coin) => {
     if (query === "") return true;
@@ -45,6 +53,11 @@ export default function App(){
       {filteredCoins.length === 0 ? <p className="text-center p-4 text-gray-500">No coins match "{query}".</p> :
       <CoinTable coins={filteredCoins} />
       }
+      <button onClick={() => setPage((prev) => prev + 1)}
+        disabled={loadingMore}
+        className="w-full p-2 mt-4 border rounded disabled:opacity-50 disabled:cursor-not-allowed">
+        {loadingMore ? "Loading..." : "Load more"}
+      </button>
       </>
   );
 }

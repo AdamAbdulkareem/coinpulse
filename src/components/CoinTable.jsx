@@ -3,6 +3,7 @@ import { CoinRow } from "./CoinRow"
 export function CoinTable(props){
     const { coins } = props
     return (
+        <div className="overflow-x-auto">
         <table className="w-full text-left">
             <thead>
                 <tr>
@@ -20,5 +21,7 @@ export function CoinTable(props){
                 ))}
             </tbody>
         </table>
+        </div>
+
     )
 }

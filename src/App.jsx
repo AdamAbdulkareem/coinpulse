@@ -14,7 +14,9 @@ export default function App(){
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false)
 
+
   useEffect(() => {
+
     const ctrl = new AbortController();
 
     if (page === 1){
@@ -25,6 +27,7 @@ export default function App(){
 
     getTopCoins({ perPage: 100, page, signal: ctrl.signal })
       .then((data) => {
+      
         setCoins((prev) => page === 1 ? data : [...prev, ...data]);
       })
       .catch((error) => {
@@ -32,6 +35,7 @@ export default function App(){
         setError(error);
       })
       .finally(() => {
+        
         setLoading(false);
         setLoadingMore(false)
       });
@@ -48,7 +52,11 @@ export default function App(){
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error.message} />;
   return (
-      <>
+      <div className="max-w-5xl mx-auto p-4">
+      <header>
+        <h1 className="text-3xl font-bold">Coin Pulse</h1>
+        <p className="text-gray-500 mb-6">Feel the pulse of the crypto market.</p>
+      </header>
       <SearchBar value={query} onChange={setQuery} />
       {filteredCoins.length === 0 ? <p className="text-center p-4 text-gray-500">No coins match "{query}".</p> :
       <CoinTable coins={filteredCoins} />
@@ -58,6 +66,6 @@ export default function App(){
         className="w-full p-2 mt-4 border rounded disabled:opacity-50 disabled:cursor-not-allowed">
         {loadingMore ? "Loading..." : "Load more"}
       </button>
-      </>
+      </div>
   );
 }

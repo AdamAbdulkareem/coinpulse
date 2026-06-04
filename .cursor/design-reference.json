@@ -1,0 +1,172 @@
+{
+    "_meta": {
+        "purpose": "Design reference and inspiration only",
+        "usage": "Infer visual intent and design language. Do not replicate verbatim. Adapt, improve, and innovate while maintaining stylistic consistency.",
+        "copyright_note": "Original design belongs to its respective owner. This profile is for creative direction only."
+    },
+    "design_overview": {
+        "archetype": "Data-dense financial dashboard / market intelligence terminal",
+        "mood": [
+            "analytical",
+            "trustworthy",
+            "fast-paced",
+            "information-rich",
+            "professional"
+        ],
+        "theme_mode": "Dark-first, near-black canvas with subtle elevation layers",
+        "density": "High — optimized for scanning large volumes of tabular numeric data at a glance",
+        "personality": "Calm neutral chrome that lets vivid data signals (gains/losses, sparklines) carry all the visual energy",
+        "primary_metaphor": "Live ledger / trading screen where every row is a comparable data record"
+    },
+    "design_tokens": {
+        "color": {
+            "philosophy": "Neutral, desaturated dark surfaces form a quiet backdrop so that semantic data colors (positive/negative) and a single saturated brand accent become the only sources of vividness. Color is functional first, decorative last.",
+            "surface": {
+                "canvas": "very dark, near-black with a faint cool/blue undertone",
+                "elevated_surface": "slightly lighter dark gray for cards, header bars, and panels",
+                "row_alt": "barely-perceptible value shifts to delineate table rows without hard separators",
+                "overlay_scrim": "translucent dark layer for modals, dropdowns, and floating bars"
+            },
+            "border": {
+                "style": "Hairline, low-contrast dividers (1px) used sparingly; rely on spacing and subtle tonal shifts over heavy lines",
+                "tone": "Dark gray slightly above surface luminance"
+            },
+            "text": {
+                "primary": "near-white / high-contrast neutral for key values",
+                "secondary": "muted gray for labels, units, and supporting metadata",
+                "tertiary": "low-emphasis gray for ticker symbols, captions, fine print"
+            },
+            "semantic": {
+                "positive": "saturated green for upward movement / gains",
+                "negative": "saturated red for downward movement / losses",
+                "neutral_change": "muted gray when delta is negligible",
+                "rule": "Pair color with a directional glyph (up/down caret) so meaning survives color-blindness and small sizes"
+            },
+            "brand_accent": {
+                "primary": "a single bold, high-saturation accent (cool blue family) reserved for primary CTAs, active states, and key interactive affordances",
+                "secondary_accents": "occasional warm/promotional accents (amber, teal) confined to badges, pills, and ads — never structural"
+            },
+            "data_visualization": {
+                "sparklines": "thin single-stroke trend lines colored by net direction (green up / red down) over transparent backgrounds",
+                "gauges": "multi-stop gradient arc (red→amber→green) for sentiment-style meters",
+                "rule": "Charts inherit semantic colors; no decorative palettes"
+            },
+            "contrast_strategy": "Maintain low contrast between adjacent neutral surfaces, but high contrast between text/data and background. Let saturation — not brightness — signal interactivity."
+        },
+        "typography": {
+            "philosophy": "Compact, highly legible sans-serif tuned for numeric density. Hierarchy is built through weight and color rather than dramatic size jumps.",
+            "font_family": "Humanist/grotesque sans-serif with strong number legibility; tabular/lining figures strongly preferred for column alignment",
+            "numeric_treatment": "Tabular figures so digits align vertically across rows; consistent decimal precision per column",
+            "scale": {
+                "approach": "Tight modular scale with small steps; most UI text lives in a narrow small-to-base range",
+                "display": "Reserved for section headlines and hero stat callouts",
+                "body": "Compact base size for table cells and labels",
+                "caption": "Smaller muted size for units, sub-values, and metadata stacked beneath primary values"
+            },
+            "weight": {
+                "values_and_headings": "medium to semibold for emphasis on numbers and nav",
+                "labels_and_secondary": "regular for supporting text",
+                "rule": "Weight + color do the hierarchy work; avoid italics and decorative styles"
+            },
+            "case": "Sentence case for nav and labels; uppercase confined to small ticker symbols and tiny eyebrow labels",
+            "alignment": "Left-align identifiers/names, right-align numeric columns for fast vertical scanning"
+        },
+        "spacing": {
+            "philosophy": "Dense but rhythmic. Tight vertical row heights maximize data on screen, while consistent horizontal padding keeps columns breathable and scannable.",
+            "base_unit": "4px grid (common steps: 4, 8, 12, 16, 24, 32)",
+            "row_density": "Compact row height with vertical centering; supports a primary value with a smaller secondary value stacked beneath",
+            "section_rhythm": "Generous gaps between major regions (nav, summary cards, table) relative to the tight intra-table spacing",
+            "card_padding": "Comfortable internal padding on summary cards to offset the dense table region"
+        },
+        "radius": {
+            "philosophy": "Soft, modern, but restrained — rounded enough to feel friendly, never playful",
+            "pills_and_chips": "Fully rounded (capsule) for filter tags, badges, and toggles",
+            "cards_and_inputs": "Medium radius for cards, search field, and dropdowns",
+            "buttons": "Medium radius matching inputs"
+        },
+        "elevation": {
+            "philosophy": "Flat-first. Depth communicated through tonal layering rather than heavy shadows.",
+            "shadows": "Minimal; subtle soft shadows only on floating elements (sticky bars, dropdowns, modals, promotional overlays)",
+            "layering": "Surface luminance steps signal hierarchy (canvas < panel < elevated control)"
+        },
+        "iconography": {
+            "style": "Simple, geometric line/solid icons at small sizes; consistent stroke weight",
+            "asset_icons": "Small circular token/identity icons aligned left of each row label",
+            "directional_glyphs": "Tiny carets paired with semantic color for deltas",
+            "interactive_glyphs": "Outline star/favorite, sort chevrons in column headers, info indicators",
+            "rule": "Icons are utilitarian and quiet; they aid scanning, not decoration"
+        },
+        "motion": {
+            "philosophy": "Subtle and functional — value flashes, hover highlights, smooth dropdown transitions; nothing that distracts from live data",
+            "feedback": "Brief color flash on data update; row highlight on hover",
+            "duration": "Fast (under ~200ms) easing for interface transitions"
+        }
+    },
+    "layout_patterns": {
+        "global_structure": [
+            "Persistent top utility/status bar with global market summary metrics",
+            "Primary horizontal navigation bar with brand mark, section links, search, and account/CTA cluster",
+            "Secondary tab/segment row for switching dataset views",
+            "Row of compact summary 'stat cards' (key indicators, mini-charts, gauges) above the main content",
+            "Horizontally scrollable filter/category chip rail",
+            "Dominant full-width data table as the centerpiece",
+            "Pagination + result-count footer beneath the table",
+            "Floating contextual elements (assistant prompt bar, scroll-to-top, promo overlay)"
+        ],
+        "grid": {
+            "container": "Wide, near-full-width fluid container maximizing horizontal data real estate",
+            "columns": "Table-driven layout with fixed leading columns (rank, name) and right-aligned numeric columns; trailing visual column (sparkline)",
+            "summary_cards": "Equal-width responsive card row that collapses/scrolls on narrow viewports"
+        },
+        "alignment_rules": {
+            "identifiers": "Left-aligned with leading icon",
+            "metrics": "Right-aligned numerics with consistent precision",
+            "sticky_regions": "Header/nav and column headers remain anchored while data scrolls"
+        },
+        "responsiveness": "Horizontal scroll for the table on small screens; chip rails and card rows scroll horizontally rather than wrap; progressive column hiding by priority"
+    },
+    "component_patterns": {
+        "top_status_bar": "Thin strip of global aggregate metrics in tertiary text with inline semantic deltas",
+        "primary_nav": "Dark bar, brand mark left, text links center, search field + accent CTA + avatar right",
+        "segmented_tabs": "Underline-style active indicator in brand accent; inactive tabs in secondary text",
+        "summary_stat_card": {
+            "structure": "Eyebrow label + small disclosure caret, large primary value, semantic delta, optional embedded mini-chart or gauge",
+            "treatment": "Elevated surface, medium radius, comfortable padding, quiet borders"
+        },
+        "filter_chips": "Capsule pills in a scrollable rail; selected state uses subtle fill or accent outline; leading mini-icons for categories",
+        "data_table": {
+            "header_row": "Sticky, muted labels with sort chevrons, right-aligned over numeric columns",
+            "row": "Leading favorite star + rank, token icon + name + uppercase ticker, right-aligned price and multi-timeframe percentage deltas, market metrics, trailing sparkline",
+            "secondary_values": "Smaller muted sub-value stacked beneath primary cell value (e.g. supplemental volume/supply figure)",
+            "row_interaction": "Full-row hover highlight; row is the primary clickable unit",
+            "separators": "Hairline dividers or tonal alternation, never heavy rules",
+            "inline_action": "Small pill/ghost action button (e.g. quick CTA) within the row"
+        },
+        "sparkline_cell": "Compact directional trend line, semantically colored, no axes or labels",
+        "gauge_widget": "Semicircular gradient meter with a single numeric readout and a sentiment label",
+        "pagination": "Centered numeric pager with accent-filled active page, ellipsis truncation, prev/next chevrons, paired with a result-count and page-size selector",
+        "search_field": "Rounded dark input with leading magnifier icon and keyboard-shortcut hint affordance",
+        "buttons": {
+            "primary": "Solid brand-accent fill, medium radius, semibold label",
+            "secondary": "Ghost/outline or quiet fill on elevated surface",
+            "pill_cta": "Small capsule buttons for contextual/inline actions"
+        },
+        "badges": "Small capsule tags (e.g. 'new', category markers) using muted or warm accent fills",
+        "floating_assistant_bar": "Centered floating capsule input with shortcut hint, soft shadow, anchored above the fold's lower edge",
+        "promo_overlay": "Dismissible bottom-corner card with stronger imagery — visually quarantined from the core data system",
+        "utility_controls": "Scroll-to-top FAB, column/filter toggles rendered as quiet outlined controls"
+    },
+    "design_principles": [
+        "Data is the hero: chrome stays neutral and quiet so numeric signals and trend visuals dominate attention.",
+        "Semantic color is sacred: green/red strictly encode direction and are always reinforced with directional glyphs and consistent precision.",
+        "Single accent discipline: one saturated brand color drives primary actions and active states; all other accents are confined to non-structural badges/promos.",
+        "Hierarchy via weight and color, not size: tight type scale keeps density high while emphasis comes from font weight and text tone.",
+        "Scannability first: right-aligned tabular numerics, fixed identifier columns, and full-row hit targets optimize rapid vertical comparison.",
+        "Layered flatness: depth is expressed through tonal surface steps, with shadows reserved only for truly floating elements.",
+        "Rhythmic density: ultra-compact table rows balanced by generous spacing between major page regions.",
+        "Restrained geometry: capsule pills and medium-radius cards feel modern without becoming playful.",
+        "Functional motion: subtle hovers and value flashes communicate liveness without distracting from analysis.",
+        "Quarantine promotions: marketing/promo content is visually separated so it never contaminates the trust of the data surface.",
+        "Progressive disclosure & responsiveness: secondary values stack beneath primaries, and rails/tables scroll horizontally to preserve information priority on smaller screens."
+    ]
+}

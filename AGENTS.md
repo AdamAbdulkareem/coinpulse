@@ -8,6 +8,12 @@ I am a software engineering beginner learning React + Vite by building this cryp
 - Free CoinGecko API (no key on free tier; env vars set in `.env`)
 - Plan files live at `.cursor/plans/`
 
+## Project status
+
+- **MVP shipped (Jun 3, 2026).** All 11 steps of `coinpulse_api_layer_rebuild_7bd8f7b3.plan.md` are complete: scaffold, first fetch, list, table, format utils, color change, loading/error states, search, pagination, polish, deploy.
+- The app is deployed.
+- Future work falls under the "Future Iterations" list in the plan file (coin detail page + Router, watchlist with localStorage, TypeScript migration, TanStack Query, backend cache, accounts/DB, price alerts). Each is its own challenge-mode session — pick one when starting a new chat.
+
 ## Learning method — Challenge mode
 
 For every file we build, the agent must:

@@ -4,37 +4,38 @@ overview: A beginner-friendly plan for building a CoinMarketCap-style MVP using 
 todos:
   - id: scaffold
     content: Scaffold Vite + React project and install Tailwind CSS
-    status: in_progress
+    status: completed
   - id: first-fetch
     content: Call CoinGecko /coins/markets endpoint with useEffect + useState and log the response
-    status: pending
+    status: completed
   - id: basic-list
     content: Render coins as a simple list using .map() and keys
-    status: pending
+    status: completed
   - id: coin-table
     content: Build CoinTable and CoinRow components with all columns (rank, logo, name, symbol, price, 24h %, market cap, volume)
-    status: pending
+    status: completed
   - id: format-utils
     content: Add formatPrice, formatPercent, formatMarketCap helpers using Intl.NumberFormat
-    status: pending
+    status: completed
   - id: color-change
     content: Conditionally color the 24h change column green/red based on sign
-    status: pending
+    status: completed
   - id: loading-error
     content: Add loading spinner and error UI states
-    status: pending
+    status: completed
   - id: search
     content: Add SearchBar component with controlled input and client-side filtering
-    status: pending
+    status: completed
   - id: pagination
     content: Add Load more / pagination by tracking the page number in state
-    status: pending
+    status: completed
   - id: polish
     content: Responsive layout, hover states, favicon, page title
-    status: pending
+    status: completed
   - id: deploy
     content: Push to GitHub and deploy to Vercel or Netlify
-    status: pending
+    status: completed
+status: shipped
 isProject: false
 ---
 

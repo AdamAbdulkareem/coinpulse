@@ -1,0 +1,4 @@
+---
+alwaysApply: true
+---
+"When proposing UI code in briefs or reviews, treat .cursor/design-reference.json as the visual language for this project. Use it as inspiration, not a spec to copy. Default to its spacing, color, and typography decisions unless the user explicitly overrides them."

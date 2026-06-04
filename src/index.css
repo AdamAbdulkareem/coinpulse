@@ -1,1 +1,22 @@
 @import "tailwindcss";
+@theme {
+    --color-canvas: #0B0E13;
+    --color-surface: #151922;
+    --color-surface-elevated: #1E2330    ;
+    --color-text-primary: #E8EAED    ;
+    --color-text-secondary: #9AA3B2    ;
+    --color-text-tertiary: #6B7385    ;
+    --color-positive: #16C784    ;
+    --color-negative: #EA3943    ;
+    --color-brand: #3D6BFF    ;
+    --color-border:  #262C3A    ;
+    --radius-card: 0.625rem    ;
+    --radius-pill: 9999px;
+}
+
+@layer base{
+    body{
+        background-color: var(--color-canvas);
+        color: var(--color-text-primary);
+    }
+}

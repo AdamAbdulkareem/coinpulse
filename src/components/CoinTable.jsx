@@ -9,12 +9,12 @@ export function CoinTable(props) {
             <table className="w-full table-fixed">
                 <thead>
                     <tr className="border-b border-border">
-                        <th className={`${headerCell} text-left w-10`}>#</th>
+                        <th className={`${headerCell} text-left w-10 md:w-12`}>#</th>
                         <th className={`${headerCell} text-left`}>Coin</th>
-                        <th className={`${headerCell} text-right w-25`}>Price</th>
-                        <th className={`${headerCell} text-right w-18.75`}>24h %</th>
+                        <th className={`${headerCell} text-right w-25 md:w-50`}>Price</th>
+                        <th className={`${headerCell} text-right w-18.75 md:w-20`}>24h %</th>
                         <th className={`${headerCell} text-right hidden md:table-cell`}>Market Cap</th>
-                        <th className={`${headerCell} text-right hidden md:table-cell`}>Volume</th>
+                        <th className={`${headerCell} text-right hidden md:table-cell md:w-35`}>Volume</th>
                     </tr>
                 </thead>
                 <tbody>

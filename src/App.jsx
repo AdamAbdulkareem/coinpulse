@@ -52,7 +52,7 @@ export default function App() {
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error.message} />;
   return (
-    <div className="flex flex-col gap-6 max-w-5xl mx-auto px-4 py-8">
+    <div className="flex flex-col  w-full gap-6 max-w-5xl mx-auto px-4 py-8">
       <header className="flex flex-col gap-1">
         <h1 className="text-3xl font-semibold">Coin Pulse</h1>
         <p className="text-text-secondary">Feel the pulse of the crypto market.</p>

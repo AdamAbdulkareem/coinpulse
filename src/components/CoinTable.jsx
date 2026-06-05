@@ -5,8 +5,9 @@ export function CoinTable(props) {
     const headerCell =
         "py-3 px-3 text-text-secondary text-xs font-medium uppercase tracking-wide sticky top-0 bg-surface z-10";
     return (
-        <div className="bg-surface rounded-card border border-border">
-            <table className="w-full">
+        <div className="w-full min-w-0 bg-surface rounded-card border border-border">
+            <div className="overflow-x-auto lg:overflow-x-visible">
+            <table className="w-full min-w-max lg:min-w-0">
                 <thead className="bg-surface">
                     <tr className="border-b border-border">
                         <th className={`${headerCell} text-left`}>#</th>
@@ -23,6 +24,7 @@ export function CoinTable(props) {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 }

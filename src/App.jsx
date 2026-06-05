@@ -52,14 +52,17 @@ export default function App() {
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error.message} />;
   return (
-    <div className="flex flex-col  w-full gap-6 max-w-5xl mx-auto px-4 py-8">
+    <div className="flex flex-col w-full min-w-0 gap-6 max-w-5xl mx-auto px-4 py-8">
       <header className="flex flex-col gap-1">
         <h1 className="text-3xl font-semibold">Coin Pulse</h1>
         <p className="text-text-secondary">Feel the pulse of the crypto market.</p>
       </header>
       <SearchBar value={query} onChange={setQuery} />
       {filteredCoins.length === 0 ? <p className="text-center py-12 text-text-secondary">No coins match "{query}".</p> :
-        <CoinTable coins={filteredCoins} />
+      <div className="min-w-0 w-full">
+ <CoinTable coins={filteredCoins} />
+      </div>
+       
       }
       <button onClick={() => setPage((prev) => prev + 1)}
         disabled={loadingMore}

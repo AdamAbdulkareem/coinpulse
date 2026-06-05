@@ -12,7 +12,7 @@ export function CoinTable(props) {
                         <th className={`${headerCell} text-left w-10`}>#</th>
                         <th className={`${headerCell} text-left`}>Coin</th>
                         <th className={`${headerCell} text-right w-25`}>Price</th>
-                        <th className={`${headerCell} text-right w-18`}>24h %</th>
+                        <th className={`${headerCell} text-right w-18.75`}>24h %</th>
                         <th className={`${headerCell} text-right hidden md:table-cell`}>Market Cap</th>
                         <th className={`${headerCell} text-right hidden md:table-cell`}>Volume</th>
                     </tr>

@@ -1,4 +1,5 @@
 import { formatPrice, formatPercent, formatMarketCap } from "../utils/format"
+import { Sparkline } from "./Sparkline"
 
 export function CoinRow(props){
     const { coin } = props
@@ -26,6 +27,11 @@ export function CoinRow(props){
             <td className={`${numericCell} ${changeClass}`}>{formatPercent(change)}</td>
             <td className={`${numericCell} hidden md:table-cell`}>{formatMarketCap(coin.market_cap)}</td>
             <td className={`${numericCell} hidden md:table-cell`}>{formatMarketCap(coin.total_volume)}</td>
+            <td className={`${numericCell} hidden md:table-cell`}>
+                <Sparkline 
+                prices={coin.sparkline_in_7d?.price}
+                />
+            </td>
         </tr>
     )
 }

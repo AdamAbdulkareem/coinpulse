@@ -13,6 +13,17 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false)
+  const [sortKey, setSortKey] = useState("rank");
+  const [sortDirection, setSortDirection] = useState("asc")
+
+  function handleSort(key) {
+    if (sortKey === key) {
+      setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key)
+      setSortDirection("asc");
+    }
+  }
 
 
   useEffect(() => {
@@ -25,7 +36,7 @@ export default function App() {
       setLoadingMore(true)
     }
 
-    getTopCoins({ perPage: 100, page, signal: ctrl.signal })
+    getTopCoins({ perPage: 100, page, signal: ctrl.signal, sparkline: true })
       .then((data) => {
 
         setCoins((prev) => page === 1 ? data : [...prev, ...data]);
@@ -48,6 +59,29 @@ export default function App() {
     const q = query.toLowerCase();
     return coin.name.toLowerCase().includes(q) || coin.symbol.toLowerCase().includes(q)
   })
+  const SORT_FIELDS = {
+    rank: "market_cap_rank",
+    name: "name",
+    price: "current_price",
+    change: "price_change_percentage_24h",
+    market_cap: "market_cap",
+    volume: "total_volume",
+  }
+  const sortedCoins = sortKey ? [...filteredCoins].sort((a, b) => {
+    const field = SORT_FIELDS[sortKey];
+    const aVal = a[field]
+    const bVal = b[field]
+    const dir = sortDirection === "asc" ? 1 : -1;
+
+    if (aVal == null) return 1;
+    if (bVal == null) return -1;
+
+    if (sortKey === "name") {
+      return aVal.localeCompare(bVal) * dir
+    }
+    return (aVal - bVal) * dir;
+
+  }) : filteredCoins;
 
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error.message} />;
@@ -59,10 +93,14 @@ export default function App() {
       </header>
       <SearchBar value={query} onChange={setQuery} />
       {filteredCoins.length === 0 ? <p className="text-center py-12 text-text-secondary">No coins match "{query}".</p> :
-      <div className="min-w-0 w-full">
- <CoinTable coins={filteredCoins} />
-      </div>
-       
+        <div className="min-w-0 w-full">
+          <CoinTable
+            coins={sortedCoins}
+            sortKey={sortKey}
+            sortDirection={sortDirection}
+            onSort={handleSort}
+          />
+        </div>
       }
       <button onClick={() => setPage((prev) => prev + 1)}
         disabled={loadingMore}
